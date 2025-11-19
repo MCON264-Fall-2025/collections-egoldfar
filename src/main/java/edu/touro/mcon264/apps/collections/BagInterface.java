@@ -7,7 +7,7 @@
 
 package edu.touro.mcon264.apps.collections;
 
-public interface BagInterface<T> extends CollectionInterface
+public interface BagInterface<T> extends CollectionInterface<T>
 {
   T grab();
   // If this bag is not empty, removes and returns a random element of the bag;
