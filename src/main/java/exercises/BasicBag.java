@@ -1,5 +1,7 @@
 package exercises;
 
+import java.util.Random;
+
 import edu.touro.mcon264.apps.collections.ArrayCollection;
 import edu.touro.mcon264.apps.collections.BagInterface;
 
@@ -12,17 +14,18 @@ public class BasicBag<T> extends ArrayCollection<T> implements BagInterface<T> {
      */
     @Override
     public T grab() {
-        if(isEmpty())
+        if (isEmpty())
             return null;
-        try {
-        return elements[size()-1];
-        } finally {
-            remove(elements[size()-1]);
-        }
+        Random random = new Random();
+        int randomIndex = random.nextInt(size());
+        T element = elements[randomIndex];
+        remove(element);
+        return element;
     }
 
     /**
-     * Returns a count of all elements e in this collection such that e.equals(target).
+     * Returns a count of all elements e in this collection such that
+     * e.equals(target).
      *
      * @param target the element to count occurrences of
      * @return the number of times target appears in this bag
@@ -57,11 +60,14 @@ public class BasicBag<T> extends ArrayCollection<T> implements BagInterface<T> {
     /**
      * Empties this bag so that it contains zero elements.
      */
+
     @Override
     public void clear() {
-        while (!isEmpty()) {
-            remove(elements[0]);
+        for (int i = 0; i < numElements; i++) {
+            elements[i] = null;
         }
+        numElements = 0;
+
     }
 
 }

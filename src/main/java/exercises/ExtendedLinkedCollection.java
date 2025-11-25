@@ -57,13 +57,12 @@ public class ExtendedLinkedCollection<T> extends LinkedCollection<T> {
      * 
      * @param target the element to be removed from this collection
      */
-    public void removeAll(T target) {
-        LLNode<T> current = head;
-        while (current != null) {
-            if (current.getInfo().equals(target)) {
-                remove(current.getInfo());
-            }
-            current = current.getLink();
+    public int removeAll(T target) {
+        int count =0;
+        while (remove(target)) {
+            // continue removing all occurrences of target
+            count++;
         }
+        return count;
     }
 }
