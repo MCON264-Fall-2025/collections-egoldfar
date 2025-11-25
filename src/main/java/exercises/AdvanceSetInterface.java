@@ -15,4 +15,8 @@ public interface AdvanceSetInterface <T> extends CollectionInterface<T> {
     difference()
  */
 
+    public CollectionInterface<T> union(CollectionInterface<T> other);
+    public CollectionInterface<T> intersection(CollectionInterface<T> other);
+    public CollectionInterface<T> difference(CollectionInterface<T> other);
+
 }
