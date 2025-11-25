@@ -1,33 +1,73 @@
 package exercises;
 
+import java.util.Random;
+
 import edu.touro.mcon264.apps.collections.ArrayCollection;
 import edu.touro.mcon264.apps.collections.BagInterface;
 
 public class BasicBag<T> extends ArrayCollection<T> implements BagInterface<T> {
+    /**
+     * If this bag is not empty, removes and returns a random element of the bag;
+     * otherwise returns null.
+     *
+     * @return a random element from this bag, or null if the bag is empty
+     */
     @Override
     public T grab() {
-        return null;
+        if (isEmpty())
+            return null;
+        Random random = new Random();
+        int randomIndex = random.nextInt(size());
+        T element = elements[randomIndex];
+        remove(element);
+        return element;
     }
 
+    /**
+     * Returns a count of all elements e in this collection such that
+     * e.equals(target).
+     *
+     * @param target the element to count occurrences of
+     * @return the number of times target appears in this bag
+     */
     @Override
     public int count(T target) {
-        return 0;
+        int count = 0;
+        for (int i = 0; i < size(); i++) {
+            if (elements[i].equals(target)) {
+                count++;
+            }
+        }
+        return count;
     }
 
+    /**
+     * Removes all elements e from this collection such that e.equals(target)
+     * and returns the number of elements removed.
+     *
+     * @param target the element whose occurrences are to be removed
+     * @return the number of elements removed from this bag
+     */
     @Override
     public int removeAll(T target) {
-        return 0;
+        int count = 0;
+        while (remove(target)) {
+            count++;
+        }
+        return count;
     }
+
+    /**
+     * Empties this bag so that it contains zero elements.
+     */
 
     @Override
     public void clear() {
+        for (int i = 0; i < numElements; i++) {
+            elements[i] = null;
+        }
+        numElements = 0;
 
     }
-
-    // TODO: implement the methods in the BagInterface using an array as the underlying data structure
-    // consider extending ArrayCollection<T>
-    // put in the JavaDoc comments as specified in the BagInterface.
-    // Which SOLID principles is being applied here?
-
 
 }
